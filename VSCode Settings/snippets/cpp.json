@@ -24,7 +24,7 @@ combination...組み合わせ・nCkを求める
 modint...modを勝手に取ってくれる構造体
 knapsack...ナップサック問題を解く
 lcs...最長共通部分列問題を解く
-template...ICPCなどテンプレート
+icpctemplate...ICPCなどテンプレート
 gpriority_queue...昇順に取り出せるのpriority_queue
 bellman_ford...ベルマンフォード法 O(VE)
 topological_sort...トポロジカルソート
@@ -42,6 +42,8 @@ lis...LIS(最長増加部分列)を解く
 conlis...Continue LIS(最長連続増加部分列)を解く
 extgcd...拡張ユークリッドの互助法を解く
 StronglyConnectedComponent...強連結成分分解
+CoordinateCompression...二次元座標圧縮
+template...テンプレート
 */
 {
 	"gcd": {
@@ -84,7 +86,7 @@ StronglyConnectedComponent...強連結成分分解
 	"lcm": {
 		"prefix": "lcm",
 		"body": [
-			"ll gcd(ll a, ll b) { return b ? gcd(b, a%b) : a;}",
+			"// gcdも呼ぶ！！！",
 			"ll lcm(ll a, ll b) { return a / gcd(a,   b) * b;}"
 		],
 		"description": "最小公倍数"
@@ -92,8 +94,8 @@ StronglyConnectedComponent...強連結成分分解
 	"nlcm": {
 		"prefix": "nlcm",
 		"body": [
-			"ll gcd(ll a, ll b) { return b ? gcd(b, a%b) : a;}",
-			"ll lcm(ll a, ll b) { return a / gcd(a,   b) * b;}",
+			"// gcdも呼ぶ！！！",
+			"// lcmも呼ぶ！！！",
 			"int nlcm(vector<int> numbers) {",
 				"\tint l;",
 				"\tl = numbers[0];",
@@ -180,8 +182,8 @@ StronglyConnectedComponent...強連結成分分解
 	"quicksort": {
 		"prefix": "quicksort",
 		"body": [
-			"#define N 10",
-			"int a[N];",
+			"#define QsoetN 10",
+			"int a[QsoetN];",
 			"void quicksort(int a[], int first, int last){",
 				"\tint i, j, x;",
 
@@ -200,12 +202,12 @@ StronglyConnectedComponent...強連結成分分解
 				"\tif(j + 1 < last) quicksort(a, j + 1, last);",
 			"}"
 		],
-		"description": "クイックソートですsort関数で十分です"
+		"description": "クイックソートですがsort関数で十分です"
 	},
 	"ngcd": {
 		"prefix": "ngcd",
 		"body": [
-			"ll gcd(ll a, ll b) { return b ? gcd(b, a%b) : a;}",
+			"// gcdも呼ぶ！！！",
 			"ll ngcd(vector<ll> a){",
 			"\tll d;",
 			"\td = a[0];",
@@ -304,10 +306,10 @@ StronglyConnectedComponent...強連結成分分解
 	"hakidashi": {
 		"prefix": "hakidashi",
 		"body": [
-			"#define N 20 //20元連立方程式まで解ける",
+			"#define RANK 20 //20元連立方程式まで解ける",
 			"/*",
 			"使用方法",
-				"\tdouble a[N][N+1];",
+				"\tdouble a[RANK][RANK+1];",
 				"\tint i, n;",
 				"\ta[0][0] = 2; a[0][1] = 3; a[0][2] = 1; a[0][3] = 4;",
 				"\ta[1][0] = 4; a[1][1] = 1; a[1][2] = -3 ; a[1][3] = -2;",
@@ -316,7 +318,7 @@ StronglyConnectedComponent...強連結成分分解
 				"\thakidashi(a,n);",
 			"*/",
 
-			"void hakidashi(double a[][N+1], int n) { ",
+			"void hakidashi(double a[][RANK+1], int n) { ",
 				"\tdouble piv, t;",
 				"\tint i, j, k;",
 		
@@ -435,7 +437,9 @@ StronglyConnectedComponent...強連結成分分解
 	"stringcount": {
 		"prefix": "stringcount",
 		"body": [
-			"count(s.cbegin(), s.cend(), '$1')"
+			"int stringcount(string s, char c) {",
+			"\treturn count(s.cbegin(), s.cend(), c);",
+			"}"
 		],
 		"description": "文字列中の特定の文字の個数をカウント"
 	},
@@ -460,27 +464,27 @@ StronglyConnectedComponent...強連結成分分解
 	"bitsearch": {
 		"prefix": "bitsearch",
 		"body": [
-			"int n = 5;",
-			"",
 			"// {0, 1, ..., n-1} の部分集合の全探索",
-			"for (int bit = 0; bit < (1<<n); ++bit){",
-			"\t/* bit で表される集合の処理を書く */",
-			"\t",
-			"\t/* きちんとできていることを確認してみる */",
-			"\t// bit の表す集合を求める",
-			"\tvector<int> S;",
-			"\tfor(int i = 0; i < n; ++i) {",
-			"\t\tif(bit & (1<<i) ){ // i が bit に入るかどうか",
-			"\t\t\tS.push_back(i);",
+			"void bitsearch(int n) {",
+			"\tfor(int bit = 0; bit < (1<<n); ++bit){",
+			"\t\t/* bit で表される集合の処理を書く */",
+			"\t\t",
+			"\t\t/* きちんとできていることを確認してみる */",
+			"\t\t// bit の表す集合を求める",
+			"\t\tvector<int> S;",
+			"\t\tfor(int i = 0; i < n; ++i) {",
+			"\t\t\tif(bit & (1<<i) ){ // i が bit に入るかどうか",
+			"\t\t\t\tS.push_back(i);",
+			"\t\t\t}",
 			"\t\t}",
+			"\t\t",
+			"\t\t// bit の表す集合の出力",
+			"\t\tcout << bit << \": {\";",
+			"\t\tfor(int  i = 0; i < S.size(); ++i) {",
+			"\t\t\tcout << S[i] << \" \";",
+			"\t\t}",
+			"\t\tcout << \"}\" << endl;",
 			"\t}",
-			"\t",
-			"\t// bit の表す集合の出力",
-			"\tcout << bit << \": {\";",
-			"\tfor(int  i = 0; i < S.size(); ++i) {",
-			"\t\tcout << S[i] << \" \";",
-			"\t}",
-			"\tcout << \"}\" << endl;",
 			"}"
 		],
 		"description": "bit全探索"
@@ -602,8 +606,8 @@ StronglyConnectedComponent...強連結成分分解
 		],
 		"description": "最長共通部分列問題を解く"
 	},
-	"template": {
-		"prefix": "template",
+	"icpctemplate": {
+		"prefix": "icpctemplate",
 		"body": [
 			"#include <iostream>",
 			"#include <algorithm>",
@@ -615,7 +619,7 @@ StronglyConnectedComponent...強連結成分分解
 			"#define rep(i,n) for(int i = 0; i < (n); ++i)",
 			"int main(void){}"
 		],
-		"description": "テンプレート"
+		"description": "ICPCテンプレート"
 	},
 	"gpriority_queue": {
 		"prefix": "gpriority_queue",
@@ -627,8 +631,8 @@ StronglyConnectedComponent...強連結成分分解
 	"bellman_ford": {
 		"prefix": "bellman_ford",
 		"body": [
-			"//頂点fromから頂点toへのコストcostの辺",
-			"struct edge {",
+			"// 頂点fromから頂点toへのコストcostの辺",
+			"struct bf_edge {",
 				"\tint from;",
 				"\tint to;",
 				"\tint cost;",
@@ -636,9 +640,9 @@ StronglyConnectedComponent...強連結成分分解
 			"",
 			"class Bellman_Ford{",
 			"public:",
-				"\tvector<edge> es; //辺",
-				"\tvector<int> d; ///d[i]...頂点sから頂点iまでの最短距離",
-				"\tint V, E; //Vは頂点数、Eは辺数",
+				"\tvector<bf_edge> es; // 辺",
+				"\tvector<int> d; // d[i]...頂点sから頂点iまでの最短距離",
+				"\tint V, E; // Vは頂点数、Eは辺数",
 				"",
 				"\tBellman_Ford(int v, int e) {",
 					"\t\tV = v;",
@@ -647,11 +651,11 @@ StronglyConnectedComponent...強連結成分分解
 				"\t}",
 				"",
 				"\tvoid add(int from, int to, int cost) {",
-					"\t\tedge ed = {from, to, cost};",
+					"\t\tbf_edge ed = {from, to, cost};",
 					"\t\tes.push_back(ed);",
 				"\t}",
 				"",
-				"\t//s番目の頂点から各頂点への最短距離を求める",
+				"\t// s番目の頂点から各頂点への最短距離を求める",
 				"\tvoid shortest_path(int s) {",
 					"\t\tfor(int i = 0; i < V; i++) {",
 						"\t\t\td[i] = INF;",
@@ -660,7 +664,7 @@ StronglyConnectedComponent...強連結成分分解
 					"\t\twhile(true) {",
 						"\t\t\tbool update = false;",
 						"\t\t\tfor(int i = 0; i < E; i++) {",
-							"\t\t\t\tedge e = es[i];",
+							"\t\t\t\tbf_edge e = es[i];",
 							"\t\t\t\tif(d[e.from] != INF && d[e.to] > d[e.from] + e.cost) {",
 								"\t\t\t\t\td[e.to] = d[e.from] + e.cost;",
 								"\t\t\t\t\tupdate = true;",
@@ -674,13 +678,13 @@ StronglyConnectedComponent...強連結成分分解
 					"\t\tfor(int i = 0; i < V; i++) {",
 						"\t\t\td[i] = 0;",
 					"\t\t}",
-					"\t\tfor (int i = 0; i < V; i++) {",
+					"\t\tfor (int i = 0; i < 3*V; i++) {",
 						"\t\t\tfor(int j = 0; j < E; j++) {",
-							"\t\t\t\tedge e = es[j];",
+							"\t\t\t\tbf_edge e = es[j];",
 							"\t\t\t\tif(d[e.to] > d[e.from] + e.cost) {",
 								"\t\t\t\t\td[e.to] = d[e.from] + e.cost;",
 								"",
-								"\t\t\t\t\t//n回目にも更新があるなら負の閉路が存在する",
+								"\t\t\t\t\t// 3n回目にも更新があるなら負の閉路が存在する",
 								"\t\t\t\t\tif(i == V - 1)return true;",
 							"\t\t\t\t}",
 						"\t\t\t}",
@@ -694,7 +698,7 @@ StronglyConnectedComponent...強連結成分分解
 	"topological_sort": {
 		"prefix": "topological_sort",
 		"body": [
-			"vvi G(1000); //グラフ(リスト)",
+			"vvi G(1000); // グラフ(リスト)",
 			"",
 			"// トポロジカルソート",
 			"void rec(int v, vector<bool> &seen, vector<int> &order) {",
@@ -729,24 +733,24 @@ StronglyConnectedComponent...強連結成分分解
 			"public:",
 				"\tint V;",
 				"",
-				"\tstruct edge {",
+				"\tstruct dk_edge {",
 					"\t\tint to;",
 					"\t\tint cost;",
 				"\t};",
 				"",
 				"\ttypedef pair<int, int> PI; //firstは最短距離、secondは頂点の番号",
-				"\tvector<vector<edge> >G;",
+				"\tvector<vector<dk_edge> >G;",
 				"\tvector<int> d; //これ答え。d[i]:=V[i]までの最短距離",
 				"\tvector<int> prev; //経路復元",
 				"",
 				"\tDIJKSTRA(int size) {",
 					"\t\tV = size;",
-					"\t\tG = vector<vector<edge> >(V);",
+					"\t\tG = vector<vector<dk_edge> >(V);",
 					"\t\tprev = vector<int> (V, -1);",
 				"\t}",
 				"",
 				"\tvoid add(int from, int to, int cost) {",
-					"\t\tedge e = {to, cost};",
+					"\t\tdk_edge e = {to, cost};",
 					"\t\tG[from].push_back(e);",
 				"\t}",
 				"",
@@ -763,7 +767,7 @@ StronglyConnectedComponent...強連結成分分解
 						"\t\t\tint v = p.second;",
 						"\t\t\tif(d[v] < p.first) continue;",
 						"\t\t\tfor(int i = 0; i < G[v].size(); i++) {",
-							"\t\t\t\tedge e = G[v][i];",
+							"\t\t\t\tdk_edge e = G[v][i];",
 							"\t\t\t\tif(d[e.to] > d[v] + e.cost) {",
 								"\t\t\t\t\td[e.to] = d[v] + e.cost;",
 								"\t\t\t\t\tprev[e.to] = v;",
@@ -851,7 +855,9 @@ StronglyConnectedComponent...強連結成分分解
 	"intersect": {
 		"prefix": "intersect",
 		"body": [
-			"set_intersection(a.begin(), a.end(), b.begin(), b.end(), inserter(res, res.end()));"
+			"void intersect(set<int> &Set_A, set<int> &Set_B, set<int> &Set_res) {",
+			"\tset_intersection(Set_A.begin(), Set_A.end(), Set_B.begin(), Set_B.end(), inserter(Set_res, Set_res.end()));",
+			"}"
 		],
 		"description": "setのintersect"
 	},
@@ -872,7 +878,9 @@ StronglyConnectedComponent...強連結成分分解
 	"indexdintance": {
 		"prefix": "indexdistance",
 		"body": [
-			"static_cast<int>(std::distance(std::begin(array), std::find(std::begin(array), std::end(array), $1c)))"
+			"int indexdistance(vector<int> distance_array, char c) {",
+			"\treturn static_cast<int>(std::distance(std::begin(distance_array), std::find(std::begin(distance_array), std::end(distance_array), c)));",
+			"}"
 		],
 		"description": "特定の文字の配列内の添字"
 	},
@@ -943,43 +951,44 @@ StronglyConnectedComponent...強連結成分分解
 	"kruskal": {
 		"prefix": "kruskal",
 		"body": [
-			"//Union-Findも呼んで！！",
-			"struct edge {",
-				"\tint u; //辺の片方，fromではないので二回辺を張る必要はない",
-				"\tint v; //辺のもう片方",
+			"UnionFind uni(100);",
+			"// Union-Findも呼んで！！そして上の書き換えて！！！",
+			"struct kr_edge {",
+				"\tint u; // 辺の片方，fromではないので二回辺を張る必要はない",
+				"\tint v; // 辺のもう片方",
 				"\tint cost;",
 				"",
 				"\t// コストの大小で順序定義",
-				"\tbool operator<(const edge& e) const {",
+				"\tbool operator<(const kr_edge& e) const {",
 					"\t\treturn cost < e.cost;",
 				"\t}",
 			"};",
 			"class Kruskal{",
 				"\tpublic:",
 				"",
-				"\tbool comp(const edge& e1, const edge& e2) { //sort関数の比較関数",
+				"\tbool comp(const kr_edge& e1, const kr_edge& e2) { // sort関数の比較関数",
 					"\t\treturn e1.cost < e2.cost;",
 				"\t}",
 				"",
-				"\tvector<edge> es; //辺の集合",
-				"\tvector<edge> minst; //最小全域木に用いられる辺の集合",
-				"\tint V, E; //頂点数と辺数",
+				"\tvector<kr_edge> es; //辺の集合",
+				"\tvector<kr_edge> minst; // 最小全域木に用いられる辺の集合",
+				"\tint V, E; // 頂点数と辺数",
 				"",
 				"\tKruskal(int v) {",
 					"\t\tV = v;",
 				"\t}",
 				"",
 				"\tvoid add(int v, int u, int cost){",
-					"\t\tedge e = {v, u, cost};",
+					"\t\tkr_edge e = {v, u, cost};",
 					"\t\tes.push_back(e);",
 				"\t}",
 				"",
 				"\tint kruskal() {",
-					"\t\tsort(es.begin(), es.end()); //edge.costが小さい順にソートされる",
+					"\t\tsort(es.begin(), es.end()); // kr_edge.costが小さい順にソートされる",
 					"\t\tUnionFind uni(V); //union-findの初期化",
 					"\t\tint res = 0;",
 					"\t\tfor(int i = 0; i < es.size(); i++) {",
-						"\t\t\tedge e = es[i];",
+						"\t\t\tkr_edge e = es[i];",
 						"\t\t\tif(uni.root(e.u) != uni.root(e.v)) {",
 							"\t\t\t\tuni.connect(e.u, e.v);",
 							"\t\t\t\tres += e.cost;",
@@ -1142,7 +1151,7 @@ StronglyConnectedComponent...強連結成分分解
 		"prefix": "lis",
 		"body": [
 			"int lis(vector<int>& v) {",
-    			"\tvvi dp(1, v[0]);",
+    			"\tvi dp(1, v[0]);",
     			"\tfor(int i = 1; i < v.size(); i++) {",
     			    "\t\tif(v[i] > dp[dp.size() - 1]) {",
     			        "\t\t\tdp.push_back(v[i]);",
@@ -1303,10 +1312,172 @@ StronglyConnectedComponent...強連結成分分解
 			"\t\t}",
 			"\t\tcout << endl;",
 			"\t}",
-			"}",
+			"};"
 		],
 		"description": "強連結成分分解"
 	},
+	"CoordinateCompression": {
+		"prefix": "CoordinateCompression",
+		"body": [
+			"class Compress{",
+			"public:",
+			"\tint before_W, before_H, N;",
+			"\tvi before_X1, before_X2, before_Y1, before_Y2;",
+			"\tint after_W, after_H;",
+			"\tvi after_X1, after_X2, after_Y1, after_Y2;",
+			"\t",
+			"\t// (x1,y1) -> (x2, y2) の直線上のマスが塗られているとする",
+			"\t// 点の場合は (x1,y1) == (x2, y2) とする",
+			"\t// 四角形の場合は直線の集合とする",
+			"\tCompress(int max_h, int max_w, int n, vi x1, vi x2, vi y1, vi y2) {",
+			"\t\tbefore_H = max_h;",
+			"\t\tbefore_W = max_w;",
+			"\t\tN = n;",
+			"\t\tbefore_X1 = x1;",
+			"\t\tbefore_X2 = x2;",
+			"\t\tbefore_Y1 = y1;",
+			"\t\tbefore_Y2 = y2;",
+			"\t\tafter_X1 = vi(max_w);",
+			"\t\tafter_X2 = vi(max_w);",
+			"\t\tafter_Y1 = vi(max_h);",
+			"\t\tafter_Y2 = vi(max_h);",
+			"\t}",
+			"",
+			"\tvoid compress() {",
+			"\t\tafter_W = exec_compress(before_X1, before_X2, after_X1, after_X2, before_W, \"width\");",
+			"\t\tafter_H = exec_compress(before_Y1, before_Y2, after_Y1, after_Y2, before_H, \"height\");",
+			"\t}",
+			"",
+			"\tvoid before_show() {",
+			"\t\tvvc v(before_H, vc(before_W, '_'));",
+			"\t\tcout << \"H = \" << before_H << \", W = \" << before_W << endl;",
+			"\t\tfor(int i = 0; i < N; i++) {",
+			"\t\t\tfor(int y = before_Y1[i]; y <= before_Y2[i]; y++) {",
+			"\t\t\t\tfor(int x = before_X1[i]; x <= before_X2[i]; x++) {",
+			"\t\t\t\t\tv[y][x] = '#';",
+			"\t\t\t\t}",
+			"\t\t\t}",
+			"\t\t}",
+			"\t\trep(i, before_H){",
+			"\t\t\trep(j, before_W){",
+			"\t\t\t\tcout << v[i][j];",
+			"\t\t\t}",
+			"\t\t\tcout<<endl;",
+			"\t\t}",
+			"\t\tcout << endl;",
+			"\t}",
+			"",
+			"\tvoid after_show() {",
+			"\t\tvvc v(after_H, vc(after_W, '_'));",
+			"\t\tcout << \"H = \" << after_H << \", W = \" << after_W << endl;",
+			"\t\tfor(int i = 0; i < N; i++) {",
+			"\t\t\tfor(int y = after_Y1[i]; y <= after_Y2[i]; y++) {",
+			"\t\t\t\tfor(int x = after_X1[i]; x <= after_X2[i]; x++) {",
+			"\t\t\t\t\tv[y][x] = '#';",
+			"\t\t\t\t}",
+			"\t\t\t}",
+			"\t\t}",
+			"\t\trep(i, after_H){",
+			"\t\t\trep(j, after_W){",
+			"\t\t\t\tcout << v[i][j];",
+			"\t\t\t}",
+			"\t\t\tcout<<endl;",
+			"\t\t}",
+			"\t\tcout << endl;",
+			"\t}",
+			"",
+			"private:",
+			"\tint exec_compress(vi &z1, vi &z2, vi &aft_z1, vi &aft_z2, int max_len, string mode) {",
+			"\t\tvector<int> zs;",
+			"\t\tfor(int i = 0; i < N; i++) {",
+			"\t\t\tif(z1[i] > z2[i]) swap(z1[i], z2[i]);",
+			"",
+			"\t\t\tzs.push_back(z1[i]);",
+			"\t\t\tzs.push_back(z2[i]);",
+			"",
+			"\t\t\tif(mode == \"width\") {",
+			"\t\t\t\tif(z2[i] + 1 <= max_len) zs.push_back(z2[i] + 1);",
+			"\t\t\t} else if(mode == \"height\") {",
+			"\t\t\t\tif(0 < z1[i] - 1) zs.push_back(z1[i] - 1);",
+			"\t\t\t}",
+			"\t\t}",
+			"\t\tzs.push_back(1);",
+			"\t\tzs.push_back(max_len);",
+			"",
+			"\t\tsort(zs.begin(), zs.end());",
+			"\t\tzs.erase(unique(zs.begin(), zs.end()), zs.end());",
+			"",
+			"\t\tfor(int i = 0; i < N; i++) {",
+			"\t\t\taft_z1[i] = find(zs.begin(), zs.end(), z1[i]) - zs.begin() + 1;",
+			"\t\t\taft_z2[i] = find(zs.begin(), zs.end(), z2[i]) - zs.begin() + 1;",
+			"\t\t}",
+			"\t\treturn zs.size();",
+			"\t}",
+			"};"
+		],
+		"description": "二次元座標圧縮"
+	},
+	"template": {
+		"prefix": "templete",
+		"body": [
+			"#include <iostream>",
+			"#include <cstdio>",
+			"#include <algorithm>",
+			"#include <cmath>",
+			"#include <vector>",
+			"#include <list>",
+			"#include <set>",
+			"#include <map>",
+			"#include <queue>",
+			"#include <stack>",
+			"#include <cctype>",
+			"#include <climits>",
+			"#include <string>",
+			"#include <bitset>",
+			"#include <cfloat>",
+			"#include <unordered_set>",
+			"using namespace std;",
+			"typedef long double ld;",
+			"typedef long long int ll;",
+			"typedef unsigned long long int ull;",
+			"typedef vector<int> vi;",
+			"typedef vector<char> vc;",
+			"typedef vector<bool> vb;",
+			"typedef vector<double> vd;",
+			"typedef vector<string> vs;",
+			"typedef vector<ll> vll;",
+			"typedef vector<pair<int,int> > vpii;",
+			"typedef vector<vector<int> > vvi;",
+			"typedef vector<vector<char> > vvc;",
+			"typedef vector<vector<string> > vvs;",
+			"typedef vector<vector<ll> > vvll;",
+			"#define rep(i,n) for(int i = 0; i < (n); ++i)",
+			"#define rrep(i,n) for(int i = 1; i <= (n); ++i)",
+			"#define drep(i,n) for(int i = (n) - 1; i >= 0; --i)",
+			"#define fin(ans) cout << (ans) << endl",
+			"#define STI(s) atoi(s.c_str())",
+			"#define mp(p,q) make_pair(p, q)",
+			"#define pb(n) push_back(n)",
+			"#define all(a) a.begin(), a.end()",
+			"#define rall(a) a.rbegin(), a.rend()",
+			"#define Sort(a) sort(a.begin(), a.end())",
+			"#define Rort(a) sort(a.rbegin(), a.rend())",
+			"#define MATHPI acos(-1)",
+			"#define itn int",
+			"template <class T> inline bool chmax(T& a,T b){if(a<b){a=b;return 1;} return 0;}",
+			"template <class T> inline bool chmin(T& a,T b){if(a>b){a=b;return 1;} return 0;}",
+			"struct io{io(){ios::sync_with_stdio(false);cin.tie(0);}};",
+			"const ll MOD = 1000000007;",
+			"const double EPS = 1e-9;",
+			"const int INF = INT_MAX;",
+			"const ll LLINF = 1LL<<60;",
+			"",
+			"int main(void){",
+			"",
+			"}"
+		],
+		"description": "テンプレート"
+	}
 }
 
 

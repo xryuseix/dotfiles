@@ -1,0 +1,44 @@
+{
+	"replace_match": {
+		"prefix": "replace_match",
+		"body": [
+			"def replace_match(str, pattern)",
+			"## -----*----- 正規表現にマッチした箇所を置換 -----*----- ##",
+			"str.scan(pattern).each do |sub|",
+				"str.gsub!(sub, yield(sub))",
+			"end",
+			"return str",
+			"end",
+			"# replace_match(str, /[月火水木金土日祝]+/) { |str| str.split('').join('・') }"
+		],
+		"description": "正規表現にマッチした箇所を置換"
+	},/*
+	"": {
+		"prefix": "",
+		"body": [
+			
+		],
+		"description": ""
+	},*//*
+	"": {
+		"prefix": "",
+		"body": [
+			
+		],
+		"description": ""
+	},*//*
+	"": {
+		"prefix": "",
+		"body": [
+			
+		],
+		"description": ""
+	},*//*
+	"": {
+		"prefix": "",
+		"body": [
+			
+		],
+		"description": ""
+	},*/
+}

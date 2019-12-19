@@ -1,0 +1,21 @@
+{
+    "debug.allowBreakpointsEverywhere": true,
+
+    "locale": "ja",
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDelete": false,
+    "window.zoomLevel": 0,
+    "python.jediEnabled": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+    "files.autoSave": "afterDelay",
+    "editor.tabCompletion": "on",
+    "C_Cpp.updateChannel": "Insiders"
+}
