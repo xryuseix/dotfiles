@@ -48,12 +48,14 @@ PATH=$PATH:$HOME/.pyenv/shims:$PATH
 # Ruby
 PATH=$PATH:$HOME/.rbenv/shims:$PATH
 #PATH=$PATH:$HOME/.rbenv/bin:$PATH
-
-export PATH
+PATH=$PATH:$HOME/.composer/vendor/bin:$PATH
+export PATH="/usr/local/Cellar/mysql/8.0.19/bin:$PATH"
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 
+# opencv
+export PKG_CONFIG_PATH='/usr/local/lib/pkgconfig'
 
 # --------------------------------------------------
 #  オプション
@@ -124,12 +126,13 @@ alias vi='vim'
 # Jupyter Notebook
 alias jn='jupyter notebook'
 
-alias rm='rm -i'
+# alias rm='rm -i'
+alias rm='gmv -f --backup=numbered --target-directory ~/.Trash'
 alias cp='cp -i'
 alias mv='mv -i'
 
 alias mkdir='mkdir -p'
-
+alias cat='bat'
 alias :q="exit"
 
 # ファイルを開く
@@ -156,8 +159,6 @@ elif which putclip >/dev/null 2>&1 ; then
      alias -g C='| putclip'
 fi
 
-
-
 # --------------------------------------------------
 #  OS別の設定
 # --------------------------------------------------
@@ -177,6 +178,7 @@ esac
 
 
 autoload -Uz compinit
+autoload -Uz zmv
 compinit
 
 
@@ -286,10 +288,10 @@ alias cw='compass watch --time'
 alias c='clear'
 
 ## ===== 競プロ ===============
-alias gpp='g++ -std=c++1z'
-alias gt='g++ -std=c++1z temp.cpp'
+alias gpp='g++ -std=c++1z -fsanitize=undefined -I .'
 alias ao='./a.out'
-alias do='g++ -std=c++1z temp.cpp ; ./a.out'
+alias do='g++ -std=c++1z -O3 -fsanitize=address -D_GLIBCXX_DEBUG -fsanitize=undefined -D_GLIBCXX_DEBUG_PEDANTIC -o a.out -I . temp.cpp ; ./a.out'
+alias gpp++='g++ -std=c++1z -O3 -fsanitize=address -D_GLIBCXX_DEBUG -fsanitize=undefined -D_GLIBCXX_DEBUG_PEDANTIC -o a.out -I .'
 
 ## ===== Other Lang ===============
 alias py='python'
@@ -335,3 +337,17 @@ bindkey '^[word-remove-left' backward-kill-word
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 
+export PATH="/usr/local/etc/php/7.4/bin:$PATH"
+export PATH="/usr/local/etc/php/7.4/sbin:$PATH"
+
+## ===== My Website ===============
+export DB_CONNECTION='mysql'
+export DB_HOST='localhost'
+export DB_PORT='3306'
+export DB_DATABASE='NewsBBS'
+export DB_USERNAME='root'
+export DB_PASSWORD='root'
+
+
+## ===== RDC ===============
+export PATH=~/.npm-global/bin:$PATH
