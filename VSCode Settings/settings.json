@@ -1,21 +1,46 @@
 {
-    "debug.allowBreakpointsEverywhere": true,
+  "debug.allowBreakpointsEverywhere": true,
+  "lldb.adapterType": "bundled",
+  "lldb.launch.sourceMap": {
+    "/rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e/src/": "${env:HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
+  },
 
-    "locale": "ja",
-    "workbench.startupEditor": "newUntitledFile",
-    "explorer.confirmDelete": false,
-    "window.zoomLevel": 0,
-    "python.jediEnabled": false,
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
-    "liveServer.settings.donotShowInfoMsg": true,
-    "[html]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.formatOnSave": true,
-    "editor.minimap.enabled": false,
-    "files.autoSave": "afterDelay",
-    "editor.tabCompletion": "on",
-    "C_Cpp.updateChannel": "Insiders"
+  "locale": "ja",
+  "workbench.startupEditor": "newUntitledFile",
+  "explorer.confirmDelete": false,
+  "python.jediEnabled": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "files.autoSave": "afterDelay",
+  "editor.tabCompletion": "on",
+  "C_Cpp.updateChannel": "Insiders",
+  "debug.onTaskErrors": "debugAnyway",
+  "python.linting.pylintEnabled": false,
+  "python.formatting.provider": "black",
+"C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4}",
+"python.languageServer": "Microsoft",
+"extensions.ignoreRecommendations": true,
+"[json]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"python.showStartPage": false,
+"workbench.editor.enablePreview": false,
+"C_Cpp.default.includePath": [],
+"editor.wordWrap": "on",
+"explorer.confirmDragAndDrop": false,
+"editor.largeFileOptimizations": false,
+"settingsSync.ignoredExtensions": [
+"donjayamanne.python-extension-pack"
+],
+"editor.fontLigatures": null,
 }
