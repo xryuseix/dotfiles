@@ -14,7 +14,9 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-
+autoload -Uz promptinit
+promptinit
+prompt powerlevel10k
 
 # --------------------------------------------------
 #  vcs_info
@@ -41,9 +43,12 @@ export PAGER='less'
 #  PATHを通す
 # --------------------------------------------------
 
+# brew
+PATH="/opt/homebrew/bin:$PATH"
+PATH="/opt/homebrew/sbin:$PATH"
+
 # Python
 PATH=$PATH:$HOME/.pyenv/bin:$PATH
-PATH=$PATH:$HOME/.pyenv/shims:$PATH
 
 # Ruby
 PATH=$PATH:$HOME/.rbenv/shims:$PATH
@@ -53,6 +58,11 @@ export PATH="/usr/local/Cellar/mysql/8.0.19/bin:$PATH"
 
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
+
+# Flutter
+export PATH="$PATH:/Users/ryuse/development/flutter/bin"
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 
 # opencv
 export PKG_CONFIG_PATH='/usr/local/lib/pkgconfig'
@@ -274,23 +284,39 @@ alias gbr='git branch -r'
 alias gm='git merge'
 alias gr='git reset'
 
+# git pull --force
+alias current-branch-name="git branch | grep -e '^\\* ' | sed -e 's/^\\* //g'"
+# alias force-pull="git fetch && git reset --hard origin/$(current-branch-name)"
+alias force-pull="git fetch && git reset --hard origin/master"
+
 
 
 # --------------------------------------------------
 #  その他のエイリアス
 # --------------------------------------------------
 
-alias B='php ./build'
-alias CB='cd ./build_company'
+# alias B='php ./build'
+# alias CB='cd ./build_company'
 
 alias cw='compass watch --time'
 
 alias c='clear'
 
+alias brew='arch -arm64 brew'
+
 ## ===== 競プロ ===============
-alias gpp='g++ -std=c++1z -fsanitize=undefined -I .'
+alias gpp='g++ -std=c++1z -O3 -fsanitize=undefined -I .'
 alias ao='./a.out'
-alias do='g++ -std=c++1z -O3 -fsanitize=address -D_GLIBCXX_DEBUG -fsanitize=undefined -D_GLIBCXX_DEBUG_PEDANTIC -o a.out -I . temp.cpp ; ./a.out'
+fj() {
+  ALGOPATH="/Users/ryuse/Desktop/Algorithm Library"
+  PWD=$(cd $(dirname $0); pwd)
+  if [ $PWD = $ALGOPATH ]; then
+    g++ -std=c++1z -O3 -fsanitize=address -D_GLIBCXX_DEBUG -fsanitize=undefined -D_GLIBCXX_DEBUG_PEDANTIC -o a.out -I . temp.cpp;
+    ./a.out
+  else
+    echo "The directory is wrong. Please change it now."
+  fi
+}
 alias gpp++='g++ -std=c++1z -O3 -fsanitize=address -D_GLIBCXX_DEBUG -fsanitize=undefined -D_GLIBCXX_DEBUG_PEDANTIC -o a.out -I .'
 
 ## ===== Other Lang ===============
@@ -298,7 +324,10 @@ alias py='python'
 alias py2='python2'
 alias rb='ruby'
 
-
+## ===== Other Tools ===============
+alias proofLeader='python /Users/ryuse/Programming/ProofLeader/ProofLeader/proofLeader.py'
+alias commitMessage='/Users/ryuse/Programming/Command/commit.out'
+alias rime='npx rime'
 
 # --------------------------------------------------
 #  bindkey
@@ -351,3 +380,28 @@ export DB_PASSWORD='root'
 
 ## ===== RDC ===============
 export PATH=~/.npm-global/bin:$PATH
+
+
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
