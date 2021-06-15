@@ -1,46 +1,131 @@
 {
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "debug.onTaskErrors": "debugAnyway",
   "debug.allowBreakpointsEverywhere": true,
-  "lldb.adapterType": "bundled",
-  "lldb.launch.sourceMap": {
-    "/rustc/3c235d5600393dfe6c36eeed34042efad8d4f26e/src/": "${env:HOME}/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src/"
+  "extensions.ignoreRecommendations": true,
+  "workbench.startupEditor": "newUntitledFile",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
+  "settingsSync.ignoredExtensions": ["donjayamanne.python-extension-pack"],
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+
+  /* ---------- Editor settings ---------- */
+  "editor.wordWrap": "on",
+  "editor.tabCompletion": "on",
+  "editor.minimap.enabled": false,
+  "editor.suggestSelection": "first",
+  "editor.largeFileOptimizations": false,
+
+  /* ---------- C/C++ settings ---------- */
+  "C_Cpp.default.includePath": [],
+  "C_Cpp.updateChannel": "Insiders",
+
+  /* ---------- Python settings ---------- */
+  "python.showStartPage": false,
+  "python.languageServer": "Microsoft",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
   },
 
-  "locale": "ja",
-  "workbench.startupEditor": "newUntitledFile",
-  "explorer.confirmDelete": false,
-  "python.jediEnabled": false,
-  "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "terminal.integrated.fontFamily": "SauceCodePro Nerd Font",
-  "liveServer.settings.donotShowInfoMsg": true,
+  /* ---------- Formatter settings ---------- */
+  "editor.formatOnSave": true,
+  "files.autoSave": "afterDelay",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.formatOnSave": true,
-  "editor.minimap.enabled": false,
-  "files.autoSave": "afterDelay",
-  "editor.tabCompletion": "on",
-  "C_Cpp.updateChannel": "Insiders",
-  "debug.onTaskErrors": "debugAnyway",
   "python.linting.pylintEnabled": false,
   "python.formatting.provider": "black",
-"C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4}",
-"python.languageServer": "Microsoft",
-"extensions.ignoreRecommendations": true,
-"[json]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"[javascript]": {
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
-},
-"python.showStartPage": false,
-"workbench.editor.enablePreview": false,
-"C_Cpp.default.includePath": [],
-"editor.wordWrap": "on",
-"explorer.confirmDragAndDrop": false,
-"editor.largeFileOptimizations": false,
-"settingsSync.ignoredExtensions": [
-"donjayamanne.python-extension-pack"
-],
-"editor.fontLigatures": null,
+  "python.formatting.blackPath": "/Users/ryuse/.pyenv/shims/black",
+  "C_Cpp.clang_format_style": "{BasedOnStyle: Google, IndentWidth: 4}",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.insertPragma": true,
+  "workbench.editor.enablePreview": false,
+
+  /* ---------- Dart settings ---------- */
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+
+  /* ---------- deaw.IO settings ---------- */
+  "hediet.vscode-drawio.local-storage": "????????????????", // It's secret
+ 
+  /* ---------- LaTeX settings ---------- */
+  "[tex]": {
+    // スニペット補完中にも補完を使えるようにする
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    // インデント幅を2にする
+    "editor.tabSize": 2
+  },
+  "[latex]": {
+    // スニペット補完中にも補完を使えるようにする
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    // インデント幅を2にする
+    "editor.tabSize": 2
+  },
+  "[bibtex]": {
+    // インデント幅を2にする
+    "editor.tabSize": 2
+  },
+  // 使用パッケージのコマンドや環境の補完を有効にする
+  "latex-workshop.intellisense.package.enabled": true,
+  // 生成ファイルを削除するときに対象とするファイル
+  // デフォルト値に "*.synctex.gz" を追加
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.snm",
+    "*.nav",
+    "*.dvi",
+    "*.synctex.gz"
+  ],
+  // 生成ファイルを "out" ディレクトリに吐き出す
+  "latex-workshop.latex.outDir": "out",
+  // ビルドのレシピ
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk",
+      "tools": ["latexmk"]
+    }
+  ],
+  // ビルドのレシピに使われるパーツ
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": ["-silent", "-outdir=%OUTDIR%", "%DOC%"]
+    }
+  ]
 }
