@@ -23,9 +23,10 @@
 
   /* ---------- Python settings ---------- */
   "python.showStartPage": false,
-  "python.languageServer": "Microsoft",
+  "python.languageServer": "Default",
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook",
+    "*.pdf": "default"
   },
 
   /* ---------- Formatter settings ---------- */
@@ -62,9 +63,7 @@
     "editor.wordBasedSuggestions": false
   },
 
-  /* ---------- deaw.IO settings ---------- */
-  "hediet.vscode-drawio.local-storage": "????????????????", // It's secret
- 
+
   /* ---------- LaTeX settings ---------- */
   "[tex]": {
     // スニペット補完中にも補完を使えるようにする
@@ -87,6 +86,7 @@
   // 生成ファイルを削除するときに対象とするファイル
   // デフォルト値に "*.synctex.gz" を追加
   "latex-workshop.latex.clean.fileTypes": [
+    "*.acn",
     "*.aux",
     "*.bbl",
     "*.blg",
@@ -96,7 +96,6 @@
     "*.lot",
     "*.out",
     "*.toc",
-    "*.acn",
     "*.acr",
     "*.alg",
     "*.glg",
@@ -127,5 +126,33 @@
       "command": "latexmk",
       "args": ["-silent", "-outdir=%OUTDIR%", "%DOC%"]
     }
-  ]
+  ],
+  "latex-workshop.view.pdf.viewer": "tab",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true
+  },
+  "workbench.editor.untitled.hint": "hidden",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  /* ---------- Typescript settings ---------- */
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.bracketPairColorization.enabled": true,
+  /* ---------- Markdown settings ---------- */
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": true,
+    "editor.snippetSuggestions": "top"
+  }
 }
